@@ -25,10 +25,15 @@ Only the core needs:
 - hooks everywhere to make easy to extend it with plugins
 
 ## Usage
-### Build
-
+### Create image
+You can build the image from sources with this command :
 ```sh
 docker build -t joxit/kosmtik .
+```
+
+Or pull the image from [docker hub](https://hub.docker.com/r/joxit/kosmtik/) :
+```sh
+docker pull joxit/kosmtik
 ```
 
 ### Run
