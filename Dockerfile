@@ -23,7 +23,7 @@ RUN apt-get update \
     && cd kosmtik \
     && npm install \
     && apt-get purge -y git \
-    && apt-get autoremove -y
+    && apt-get autoremove -y --purge
 WORKDIR /opt/kosmtik
 EXPOSE 6789
 VOLUME ["/data"]
