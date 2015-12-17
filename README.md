@@ -37,6 +37,11 @@ docker pull joxit/kosmtik
 ```
 
 ### Run
-```sh
-docker run -d -p 6789:6789 joxit/kosmtik node index.js serve
+
+To run a Carto project (or `.yml`, `.yaml`):
+
 ```
+docker run -d -p 6789:6789 -v /path/to/your/project:/path/to/your/project joxit/kosmtik node index.js serve </path/to/your/project.mml>
+```
+
+Then open your browser at http://127.0.0.1:6789/.
