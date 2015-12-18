@@ -45,3 +45,67 @@ docker run -d -p 6789:6789 -v /path/to/your/project:/path/to/your/project joxit/
 ```
 
 Then open your browser at http://127.0.0.1:6789/.
+
+## Local config
+
+Because you often need to change the project config to match your
+local env, for example to adapt the database connection credentials,
+kosmtik comes with an internal plugin to manage that. You have two
+options: with a json file named `localconfig.json`, or with a js module
+name `localconfig.js`.
+
+Place your localconfig.js or localconfig.json file in the same directory as your 
+carto project (or `.yml`, `.yaml`).
+
+In both cases, the behaviour is the same, you create some rules to target
+the configuration and changes the values. Those rules are started by the
+keyword `where`, and you define which changes to apply using `then`
+keyword. You can also filter the targeted objects by using the `if` clause.
+See the examples below to get it working right now.
+
+### Example of a json file
+```json
+[
+    {
+        "where": "center",
+        "then": [29.9377, -3.4216, 9]
+    },
+    {
+        "where": "Layer",
+        "if": {
+            "Datasource.type": "postgis"
+        },
+        "then": {
+            "Datasource.dbname": "gis",
+            "Datasource.password": "",
+            "Datasource.user": "osm",
+            "Datasource.host": "postgres-osm"
+        }
+    },
+    {
+        "where": "Layer",
+        "if": {
+            "id": "hillshade"
+        },
+        "then": {
+            "Datasource.file": "/data/layers/hillshade.vrt"
+        }
+    }
+]
+```
+
+### Example of a js module
+```javascript
+exports.LocalConfig = function (localizer, project) {
+    localizer.where('center').then([29.9377, -3.4216, 9]);
+    localizer.where('Layer').if({'Datasource.type': 'postgis'}).then({
+        "Datasource.dbname": "gis",
+        "Datasource.password": "",
+        "Datasource.user": "osm",
+        "Datasource.host": "postgres-osm"
+    });
+    // You can also do it in pure JS
+    project.mml.bounds = [1, 2, 3, 4];
+};
+
+```
