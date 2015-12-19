@@ -38,10 +38,19 @@ docker pull joxit/kosmtik
 
 ### Run
 
+#### Database
+
+First of all, you need a database with OSM datas. You can use a postgres database in a docker or on a computer.
+If you want your database to be in a docker, I suggest you to use [openfirmware/postgres-osm](https://hub.docker.com/r/openfirmware/postgres-osm/) docker.
+
+In order to fill this database, you can use [openfirmware/osm2pgsql](https://hub.docker.com/r/openfirmware/osm2pgsql/).
+
+#### Project
+
 To run a Carto project (or `.yml`, `.yaml`):
 
 ```
-docker run -d -p 6789:6789 -v /path/to/your/project:/path/to/your/project joxit/kosmtik node index.js serve </path/to/your/project.mml>
+docker run -d -p 6789:6789 -v /path/to/your/project:/path/to/your/project --link postgres-osm:postgres-osm joxit/kosmtik node index.js serve </path/to/your/project.mml>
 ```
 
 Then open your browser at http://127.0.0.1:6789/.
