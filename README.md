@@ -55,6 +55,10 @@ docker run -d -p 6789:6789 -v /path/to/your/project:/path/to/your/project --link
 
 Then open your browser at http://127.0.0.1:6789/.
 
+#### Try it
+
+You can try kosmtik with [HDM CartoCSS](https://github.com/hotosm/HDM-CartoCSS) project.
+
 ## Local config
 
 Because you often need to change the project config to match your
