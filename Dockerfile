@@ -25,6 +25,9 @@ RUN apt-get update \
     && apt-get purge -y git \
     && apt-get autoremove -y --purge
 WORKDIR /opt/kosmtik
+
+RUN node index.js plugins --install kosmtik-tiles-export
+
 EXPOSE 6789
 VOLUME ["/data"]
 CMD ["node", "index.js", "serve"]
