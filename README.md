@@ -59,6 +59,15 @@ Then open your browser at http://127.0.0.1:6789/.
 
 You can try kosmtik with [HDM CartoCSS](https://github.com/hotosm/HDM-CartoCSS) project.
 
+### Plugins
+
+#### Tiles export
+To export tiles from your project (see [kosmtik-tiles-export plugin](https://github.com/kosmtik/kosmtik-tiles-export)):
+
+```
+docker run -d -v /path/to/your/project:/path/to/your/project -v /path/to/output/dir/:/data --link postgres-osm:postgres-osm joxit/kosmtik node index.js export /path/to/your/project.yml --format tiles --output /data --minZoom 1 --maxZoom 13
+```
+
 ## Local config
 
 Because you often need to change the project config to match your
