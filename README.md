@@ -65,7 +65,13 @@ You can try kosmtik with [HDM CartoCSS](https://github.com/hotosm/HDM-CartoCSS) 
 To export tiles from your project (see [kosmtik-tiles-export plugin](https://github.com/kosmtik/kosmtik-tiles-export)):
 
 ```
-docker run -d -v /path/to/your/project:/path/to/your/project -v /path/to/output/dir/:/data --link postgres-osm:postgres-osm joxit/kosmtik node index.js export /path/to/your/project.yml --format tiles --output /data --minZoom 1 --maxZoom 13
+docker run -d \
+    -v /path/to/your/project:/path/to/your/project \
+    -v /path/to/output/dir/:/data \
+    --link postgres-osm:postgres-osm \
+    joxit/kosmtik \
+    node index.js export /path/to/your/project.yml \
+    --format tiles --output /data --minZoom 1 --maxZoom 13
 ```
 
 ## Local config
