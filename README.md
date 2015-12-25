@@ -43,7 +43,7 @@ docker pull joxit/kosmtik
 First of all, you need a database with OSM datas. You can use a postgres database in a docker or on a computer.
 If you want your database to be in a docker, I suggest you to use [openfirmware/postgres-osm](https://hub.docker.com/r/openfirmware/postgres-osm/) docker.
 
-In order to fill this database, you can use [openfirmware/osm2pgsql](https://hub.docker.com/r/openfirmware/osm2pgsql/).
+In order to fill this database, you can use [openfirmware/osm2pgsql](https://hub.docker.com/r/openfirmware/osm2pgsql/). You can download a continent or country on [geofabrik.de](http://download.geofabrik.de/) or the whole planet on [planet.osm.org](http://planet.osm.org/).
 
 #### Project
 
