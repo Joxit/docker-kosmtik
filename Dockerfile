@@ -22,11 +22,11 @@ RUN apt-get update \
     && git clone https://github.com/kosmtik/kosmtik.git \
     && cd kosmtik \
     && npm install \
+    && node index.js plugins --install kosmtik-tiles-export \
+    && node index.js plugins --install kosmtik-fetch-remote \
     && apt-get purge -y git \
     && apt-get autoremove -y --purge
 WORKDIR /opt/kosmtik
-
-RUN node index.js plugins --install kosmtik-tiles-export
 
 EXPOSE 6789
 VOLUME ["/data"]
