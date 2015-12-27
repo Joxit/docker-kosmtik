@@ -50,7 +50,12 @@ In order to fill this database, you can use [openfirmware/osm2pgsql](https://hub
 To run a Carto project (or `.yml`, `.yaml`):
 
 ```
-docker run -d -p 6789:6789 -v /path/to/your/project:/path/to/your/project --link postgres-osm:postgres-osm joxit/kosmtik node index.js serve </path/to/your/project.mml>
+docker run -d \
+    -p 6789:6789 \
+    -v /path/to/your/project:/path/to/your/project \
+    --link postgres-osm:postgres-osm \
+    joxit/kosmtik \
+    node index.js serve </path/to/your/project.mml>
 ```
 
 Then open your browser at http://127.0.0.1:6789/.
