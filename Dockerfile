@@ -24,6 +24,7 @@ RUN apt-get update \
     && npm install \
     && node index.js plugins --install kosmtik-tiles-export \
     && node index.js plugins --install kosmtik-fetch-remote \
+    && node index.js plugins --install kosmtik-overlay \
     && apt-get purge -y git \
     && apt-get autoremove -y --purge
 WORKDIR /opt/kosmtik
