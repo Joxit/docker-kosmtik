@@ -15,19 +15,17 @@ FROM node:slim
 
 MAINTAINER Jones Magloire (Joxit)
 
-WORKDIR /opt/
+WORKDIR /opt/kosmtik
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends git \
-    && git clone https://github.com/kosmtik/kosmtik.git \
-    && cd kosmtik \
+    && git clone https://github.com/kosmtik/kosmtik.git . \
     && npm install \
     && node index.js plugins --install kosmtik-tiles-export \
     && node index.js plugins --install kosmtik-fetch-remote \
     && node index.js plugins --install kosmtik-overlay \
     && apt-get purge -y git \
     && apt-get autoremove -y --purge
-WORKDIR /opt/kosmtik
 
 EXPOSE 6789
 VOLUME ["/data"]
