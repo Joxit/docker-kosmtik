@@ -24,8 +24,7 @@ RUN apt-get update \
     && node index.js plugins --install kosmtik-tiles-export \
     && node index.js plugins --install kosmtik-fetch-remote \
     && node index.js plugins --install kosmtik-overlay \
-    && apt-get purge -y git \
-    && apt-get autoremove -y --purge
+    && apt-get autoremove -y --purge git
 
 EXPOSE 6789
 VOLUME ["/data"]
