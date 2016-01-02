@@ -78,7 +78,11 @@ docker run -d \
     node index.js export /path/to/your/project.yml \
     --format tiles --output /data --minZoom 1 --maxZoom 13
 ```
-### Overlay
+#### Fetch remote
+
+Download the remote files referenced in your layers and update their name to use them automatically.
+
+#### Overlay
 
 You can add an `overlay` key to your `project.mml` or your kosmtik `config.yml`
 files to override the behaviour. For example:
