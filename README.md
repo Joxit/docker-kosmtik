@@ -97,9 +97,9 @@ overlay:
 
 ```json
 "overlay": {
-    "url": 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-    "active": true
-    "opacity": 1
+    "url": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "active": true,
+    "opacity": 1,
     "position": -1
 }
 ```
