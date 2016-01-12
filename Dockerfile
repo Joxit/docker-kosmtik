@@ -1,4 +1,4 @@
-# Copyright 2015 Jones Magloire (Joxit)
+# Copyright 2015-2016 Jones Magloire (Joxit)
 # 
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ RUN apt-get update \
     && node index.js plugins --install kosmtik-tiles-export \
     && node index.js plugins --install kosmtik-fetch-remote \
     && node index.js plugins --install kosmtik-overlay \
-    && apt-get autoremove -y --purge git
+    && apt-get autoremove -y --purge git \
+    && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 6789
 VOLUME ["/data"]
