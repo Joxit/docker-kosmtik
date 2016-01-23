@@ -1,0 +1,6 @@
+#!/bin/bash
+node /opt/kosmtik/index.js $@
+
+if [ "$USER_ID" != "0" ] && [ "$USER_ID" != "" ]; then
+  chown -R $USER_ID:$USER_ID .
+fi
