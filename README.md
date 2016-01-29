@@ -1,10 +1,13 @@
 # docker-kosmtik
 Light docker for ksomtik https://github.com/kosmtik/kosmtik
+This docker is an alternative to the other kosmtik docker which is 2 times bigger.
+
+| Image name | Image Size | Image layers |
+| :---- | ---- | ---- |
+| joxit/kosmtik | [![Image Size](https://img.shields.io/imagelayers/image-size/joxit/kosmtik/latest.svg)](https://imagelayers.io/?images=joxit/kosmtik:latest) | [![Image Layers](https://img.shields.io/imagelayers/layers/joxit/kosmtik/latest.svg)](https://imagelayers.io/?images=joxit/kosmtik:latest)
+| **kosmtik/kosmtik** | [![Image Size](https://img.shields.io/imagelayers/image-size/kosmtik/kosmtik/latest.svg)](https://imagelayers.io/?images=kosmtik/kosmtik:latest) | [![Image Layers](https://img.shields.io/imagelayers/layers/kosmtik/kosmtik/latest.svg)](https://imagelayers.io/?images=kosmtik/kosmtik:latest)
 
 ## Kosmtik
-
-[![Join the chat at https://gitter.im/kosmtik/kosmtik](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kosmtik/kosmtik?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Dependency Status](https://david-dm.org/kosmtik/kosmtik.svg)](https://david-dm.org/kosmtik/kosmtik)
 
 Very lite but extendable mapping framework to create Mapnik ready maps with
 OpenStreetMap data (and more).
@@ -55,7 +58,7 @@ docker run -d \
     -v /path/to/your/project:/path/to/your/project \
     --link postgres-osm:postgres-osm \
     joxit/kosmtik \
-    node index.js serve </path/to/your/project.mml>
+    node index.js serve </path/to/your/project.mml> --host 0.0.0.0
 ```
 
 Then open your browser at http://127.0.0.1:6789/.
