@@ -28,13 +28,21 @@ Only the core needs:
 - hooks everywhere to make easy to extend it with plugins
 
 ## Usage
-### Create image
-You can build the image from sources with this command :
+### Get the docker image
+You can get the image in three ways
+
+From sources with this command : 
 ```sh
-docker build -t joxit/kosmtik .
+git clone https://github.com/Joxit/docker-kosmtik.git
+docker build -t joxit/kosmtik docker-kosmtik
 ```
 
-Or pull the image from [docker hub](https://hub.docker.com/r/joxit/kosmtik/) :
+Or build with the url : 
+ ```sh
+docker build -t joxit/kosmtik github.com/Joxit/docker-kosmtik
+```
+
+Or pull the image from [docker hub](https://hub.docker.com/r/joxit/kosmtik/) : 
 ```sh
 docker pull joxit/kosmtik
 ```
@@ -55,12 +63,14 @@ To run a Carto project (or `.yml`, `.yaml`):
 ```
 docker run -d \
     -p 6789:6789 \
-    -v /path/to/your/project:/path/to/your/project \
+    -v /path/to/your/project:/opt/project \
     --link postgres-osm:postgres-osm \
+    -e USER_ID=1000 \
     joxit/kosmtik \
-    node index.js serve </path/to/your/project.mml> --host 0.0.0.0
+    kosmtik serve </opt/project/project.(mml|yml)> --host 0.0.0.0
 ```
 
+The env `USER_ID` is your user ID on your host. The shell kosmtik will perform a `chown -R $USER_ID:$USER_ID /opt/project` at the end of the import.
 Then open your browser at http://127.0.0.1:6789/.
 
 #### Try it
@@ -74,16 +84,20 @@ To export tiles from your project (see [kosmtik-tiles-export plugin](https://git
 
 ```
 docker run -d \
-    -v /path/to/your/project:/path/to/your/project \
-    -v /path/to/output/dir/:/data \
+    -v /path/to/your/project:/opt/project \
     --link postgres-osm:postgres-osm \
+    -e USER_ID=1000 \
     joxit/kosmtik \
-    node index.js export /path/to/your/project.yml \
-    --format tiles --output /data --minZoom 1 --maxZoom 13
+    kosmtik export /opt/project/project.(mml|yml) \
+    --format tiles --output /opt/project/tiles --minZoom 1 --maxZoom 13
 ```
+The env `USER_ID` is your user ID on your host. The shell kosmtik will perform a `chown -R $USER_ID:$USER_ID /opt/project` at the end of the import.
+
 #### Fetch remote
 
 Download the remote files referenced in your layers and update their name to use them automatically.
+Kosmtik is launched as root in the docker, so fetched datas and tmp tiles will be owned by root.
+This is why you should use kosmtik cmd which will chown the curent directory (/opt/project) with your user id.
 
 #### Overlay
 
