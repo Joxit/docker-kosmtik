@@ -77,6 +77,12 @@ Then open your browser at http://127.0.0.1:6789/.
 
 You can try kosmtik with [HDM CartoCSS](https://github.com/hotosm/HDM-CartoCSS) project.
 
+You can add an alias in your .bashrc or .bash_aliases for kosmtik serve. You can use `KOSMTIK_OPTS` env to add your own docker options for kosmtik (such as --link postgres-osm:postgres-osm or --net postgres-osm for networks).
+
+```sh
+alias kosmtik="docker run -ti --rm -p 6789:6789 -v $(pwd):/opt/project -e USER_ID=1000 $KOSMTIK_OPTS joxit/kosmtik kosmtik serve --host 0.0.0.0"
+```
+
 ### Plugins
 
 #### Tiles export
