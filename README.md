@@ -83,6 +83,8 @@ You can add an alias in your .bashrc or .bash_aliases for kosmtik serve. You can
 alias kosmtik="docker run -ti --rm -p 6789:6789 -v $(pwd):/opt/project -e USER_ID=1000 $KOSMTIK_OPTS joxit/kosmtik kosmtik serve --host 0.0.0.0"
 ```
 
+Or use the shell in tools (add the folder in your PATH var). If you are using serve command, the shell will add --host 0.0.0.0 as arg.
+
 ### Plugins
 
 #### Tiles export
