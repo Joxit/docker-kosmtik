@@ -31,6 +31,7 @@ RUN apt-get update \
     && node index.js plugins --install kosmtik-deploy \
     && node index.js plugins --install kosmtik-overpass-layer \
     && node index.js plugins --install kosmtik-map-compare \
+    && node index.js plugins --install kosmtik-mapnik-reference \
     && apt-get autoremove -y --purge git \
     && rm -rf /var/lib/apt/lists/* \
     && chmod +x /bin/kosmtik
