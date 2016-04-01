@@ -19,6 +19,11 @@ if [ "$1" = "serve" ]; then
   PORT="-p 6789:6789"
 fi
 
+KOSMTIK_ENV="$(dirname $0)/env-kosmtik"
+if [ -f "$KOSMTIK_ENV" ]; then
+  source $KOSMTIK_ENV
+fi
+
 shift
 
 ARGS="$ARGS $@"
