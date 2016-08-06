@@ -37,6 +37,7 @@ RUN apt-get update \
     && node index.js plugins --install kosmtik-overpass-layer \
     && node index.js plugins --install kosmtik-place-search \
     && node index.js plugins --install kosmtik-geojson-overlay \
+    && node index.js plugins --install kosmtik-open-in-josm \
     && apt-get autoremove -y --purge git \
     && rm -rf /var/lib/apt/lists/* \
     && chmod +x /bin/kosmtik
