@@ -24,7 +24,7 @@ COPY kosmtik /bin/kosmtik
 RUN apt-get update \
     && apt-get install -y --no-install-recommends git \
     && git clone https://github.com/kosmtik/kosmtik.git . \
-    && npm install \
+    && npm install --production \
     && node index.js plugins --install kosmtik-tiles-export \
     && node index.js plugins --install kosmtik-fetch-remote \
     && node index.js plugins --install kosmtik-overlay \
