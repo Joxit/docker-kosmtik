@@ -15,8 +15,9 @@ FROM node:5-slim
 
 MAINTAINER Jones Magloire @Joxit
 
-ENV NPM_CONFIG_LOGLEVEL=warn USER_ID=0
-
+ENV NPM_CONFIG_LOGLEVEL warn
+ENV USER_ID 0
+ENV NODE_PATH /usr/local/lib/node_modules/
 WORKDIR /opt/kosmtik
 
 COPY kosmtik /bin/kosmtik
@@ -38,9 +39,11 @@ RUN apt-get update \
     && node index.js plugins --install kosmtik-place-search \
     && node index.js plugins --install kosmtik-geojson-overlay \
     && node index.js plugins --install kosmtik-open-in-josm \
+    && npm uninstall npm \
     && apt-get autoremove -y --purge git \
     && rm -rf /var/lib/apt/lists/* \
-    && chmod +x /bin/kosmtik
+    && chmod +x /bin/kosmtik \
+    && rm -rf /opt/kosmtik/.git
 
 WORKDIR /opt/project
 
