@@ -133,6 +133,10 @@ overlay:
 }
 ```
 
+#### Overpass layer
+
+Just add "type": "overpass" and a request key with your overpass query in your Carto layer. The plugin will run the queries, cache them on disk, and transform the layers in normal geojson layers (see [kosmtik-overpass-layer pugin](https://github.com/kosmtik/kosmtik-overpass-layer)). 
+
 #### Map compare
 
 You can add `compareUrl` key to your project.mml or your kosmtik config.yml files to set the default URL used (see [kosmtik-map-compare plugin](https://github.com/kosmtik/kosmtik-map-compare)).
@@ -145,6 +149,14 @@ compareUrl: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 ```json
 "compareUrl": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 ```
+
+#### Place search
+
+Add a search control (base on Photon) to your Kosmtik instance, you can use `CTRL + F` shortcut (see [kosmtik-place-search plugin](https://github.com/kosmtik/kosmtik-place-search)).
+
+#### GeoJSON overlay
+
+Show a geojson overlay on top of your Kosmtik map (see [kosmtik-geojson-overlay](https://github.com/kosmtik/kosmtik-geojson-overlay/blob/master/front.js)).
 
 ## Local config
 
