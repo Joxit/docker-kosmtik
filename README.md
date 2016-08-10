@@ -2,6 +2,7 @@
 
 Light docker for ksomtik <https://github.com/kosmtik/kosmtik>
 This docker is an alternative to the other kosmtik docker which is 2 times bigger.
+This image contains almost all kosmtik plugins.
 
 | Image name      | Image Size                                                                                                                                       | Image layers                                                                                                                                   |
 | :-------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
