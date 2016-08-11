@@ -1,11 +1,13 @@
 # docker-kosmtik
-Light docker for ksomtik https://github.com/kosmtik/kosmtik
-This docker is an alternative to the other kosmtik docker which is 2 times bigger.
 
-| Image name | Image Size | Image layers |
-| :---- | ---- | ---- |
-| joxit/kosmtik | [![Image Size](https://img.shields.io/imagelayers/image-size/joxit/kosmtik/latest.svg)](https://imagelayers.io/?images=joxit/kosmtik:latest) | [![Image Layers](https://img.shields.io/imagelayers/layers/joxit/kosmtik/latest.svg)](https://imagelayers.io/?images=joxit/kosmtik:latest)
-| kosmtik/kosmtik | [![Image Size](https://img.shields.io/imagelayers/image-size/kosmtik/kosmtik/latest.svg)](https://imagelayers.io/?images=kosmtik/kosmtik:latest) | [![Image Layers](https://img.shields.io/imagelayers/layers/kosmtik/kosmtik/latest.svg)](https://imagelayers.io/?images=kosmtik/kosmtik:latest)
+Light docker for ksomtik <https://github.com/kosmtik/kosmtik>
+This docker is an alternative to the other kosmtik docker which is 2 times bigger.
+This image contains almost all kosmtik plugins.
+
+| Image name      | Image Size                                                                                                                                       | Image layers                                                                                                                                   |
+| :-------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| joxit/kosmtik   | [![Image Size](https://img.shields.io/imagelayers/image-size/joxit/kosmtik/latest.svg)](https://imagelayers.io/?images=joxit/kosmtik:latest)     | [![Image Layers](https://img.shields.io/imagelayers/layers/joxit/kosmtik/latest.svg)](https://imagelayers.io/?images=joxit/kosmtik:latest)     |
+| kosmtik/kosmtik | [![Image Size](https://img.shields.io/imagelayers/image-size/kosmtik/kosmtik/latest.svg)](https://imagelayers.io/?images=kosmtik/kosmtik:latest) | [![Image Layers](https://img.shields.io/imagelayers/layers/kosmtik/kosmtik/latest.svg)](https://imagelayers.io/?images=kosmtik/kosmtik:latest) |
 
 ## Kosmtik
 
@@ -21,28 +23,33 @@ but in the future we hope to plug in MapCSS too.
 
 Only the core needs:
 
-- project loading
-- local configuration management
-- tiles server for live feedback when coding
-- exports to common formats (Mapnik XML, PNG…)
-- hooks everywhere to make easy to extend it with plugins
+-   project loading
+-   local configuration management
+-   tiles server for live feedback when coding
+-   exports to common formats (Mapnik XML, PNG…)
+-   hooks everywhere to make easy to extend it with plugins
 
 ## Usage
+
 ### Get the docker image
+
 You can get the image in three ways
 
 From sources with this command : 
+
 ```sh
 git clone https://github.com/Joxit/docker-kosmtik.git
 docker build -t joxit/kosmtik docker-kosmtik
 ```
 
 Or build with the url : 
- ```sh
+
+```sh
 docker build -t joxit/kosmtik github.com/Joxit/docker-kosmtik
 ```
 
 Or pull the image from [docker hub](https://hub.docker.com/r/joxit/kosmtik/) : 
+
 ```sh
 docker pull joxit/kosmtik
 ```
@@ -60,18 +67,16 @@ In order to fill this database, you can use [openfirmware/osm2pgsql](https://hub
 
 To run a Carto project (or `.yml`, `.yaml`):
 
-```
-docker run -d \
-    -p 6789:6789 \
-    -v /path/to/your/project:/opt/project \
-    --link postgres-osm:postgres-osm \
-    -e USER_ID=1000 \
-    joxit/kosmtik \
-    kosmtik serve </opt/project/project.(mml|yml)> --host 0.0.0.0
-```
+    docker run -d \
+        -p 6789:6789 \
+        -v /path/to/your/project:/opt/project \
+        --link postgres-osm:postgres-osm \
+        -e USER_ID=1000 \
+        joxit/kosmtik \
+        kosmtik serve </opt/project/project.(mml|yml)> --host 0.0.0.0
 
 The env `USER_ID` is your user ID on your host. The shell kosmtik will perform a `chown -R $USER_ID:$USER_ID /opt/project` at the end of the import.
-Then open your browser at http://127.0.0.1:6789/.
+Then open your browser at <http://127.0.0.1:6789/>.
 
 #### Try it
 
@@ -88,29 +93,29 @@ Or use the shell in tools (add the folder in your PATH var). If you are using se
 ### Plugins
 
 #### Tiles export
+
 To export tiles from your project (see [kosmtik-tiles-export plugin](https://github.com/kosmtik/kosmtik-tiles-export)):
 
-```
-docker run -d \
-    -v /path/to/your/project:/opt/project \
-    --link postgres-osm:postgres-osm \
-    -e USER_ID=1000 \
-    joxit/kosmtik \
-    kosmtik export /opt/project/project.(mml|yml) \
-    --format tiles --output /opt/project/tiles --minZoom 1 --maxZoom 13
-```
+    docker run -d \
+        -v /path/to/your/project:/opt/project \
+        --link postgres-osm:postgres-osm \
+        -e USER_ID=1000 \
+        joxit/kosmtik \
+        kosmtik export /opt/project/project.(mml|yml) \
+        --format tiles --output /opt/project/tiles --minZoom 1 --maxZoom 13
+
 The env `USER_ID` is your user ID on your host. The shell kosmtik will perform a `chown -R $USER_ID:$USER_ID /opt/project` at the end of the import.
 
 #### Fetch remote
 
-Download the remote files referenced in your layers and update their name to use them automatically.
+Download the remote files referenced in your layers and update their name to use them automatically (see [kosmtik-fetch-remote plugin](https://github.com/kosmtik/kosmtik-fetch-remote)).
 Kosmtik is launched as root in the docker, so fetched datas and tmp tiles will be owned by root.
 This is why you should use kosmtik cmd which will chown the curent directory (/opt/project) with your user id.
 
 #### Overlay
 
 You can add an `overlay` key to your `project.mml` or your kosmtik `config.yml`
-files to override the behaviour. For example:
+files to override the behaviour (see [kosmtik-overlay plugin](https://github.com/kosmtik/kosmtik-overlay)). For example:
 
 ```yml
 overlay:
@@ -128,6 +133,32 @@ overlay:
     "position": -1
 }
 ```
+
+#### Overpass layer
+
+Just add "type": "overpass" and a request key with your overpass query in your Carto layer. The plugin will run the queries, cache them on disk, and transform the layers in normal geojson layers (see [kosmtik-overpass-layer pugin](https://github.com/kosmtik/kosmtik-overpass-layer)). 
+
+#### Map compare
+
+You can add `compareUrl` key to your project.mml or your kosmtik config.yml files to set the default URL used (see [kosmtik-map-compare plugin](https://github.com/kosmtik/kosmtik-map-compare)).
+Fallback to OSM default style. For example:
+
+```yml
+compareUrl: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+```
+
+```json
+"compareUrl": "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+```
+
+#### Place search
+
+Add a search control (base on Photon) to your Kosmtik instance, you can use `CTRL + F` shortcut (see [kosmtik-place-search plugin](https://github.com/kosmtik/kosmtik-place-search)).
+
+#### GeoJSON overlay
+
+Show a geojson overlay on top of your Kosmtik map (see [kosmtik-geojson-overlay](https://github.com/kosmtik/kosmtik-geojson-overlay/blob/master/front.js)).
+
 ## Local config
 
 Because you often need to change the project config to match your
@@ -146,6 +177,7 @@ keyword. You can also filter the targeted objects by using the `if` clause.
 See the examples below to get it working right now.
 
 ### Example of a json file
+
 ```json
 [
     {
@@ -177,6 +209,7 @@ See the examples below to get it working right now.
 ```
 
 ### Example of a js module
+
 ```javascript
 exports.LocalConfig = function (localizer, project) {
     localizer.where('center').then([29.9377, -3.4216, 9]);
@@ -189,5 +222,4 @@ exports.LocalConfig = function (localizer, project) {
     // You can also do it in pure JS
     project.mml.bounds = [1, 2, 3, 4];
 };
-
 ```
