@@ -1,4 +1,5 @@
 #!/bin/bash
+export ICU_DATA="$(find /opt/kosmtik/ -iname 'icu*.dat')"
 node /opt/kosmtik/index.js $@
 
 if [ "$USER_ID" != "0" ] && [ "$USER_ID" != "" ]; then
