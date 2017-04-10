@@ -33,25 +33,31 @@ Only the core needs:
 
 ### Get the docker image
 
+There are two versions, one image `latest` based on `debian:stretch` (testing) and the other `jessie` based on `node:5-slim` (debian jessie).
+The `latest` tag contains the latest version of kosmtik and `jessie` the latest mapnik version compatible with debian jessie.
+
 You can get the image in three ways
 
-From sources with this command : 
+From sources with this command :
 
 ```sh
 git clone https://github.com/Joxit/docker-kosmtik.git
 docker build -t joxit/kosmtik docker-kosmtik
+docker build -t joxit/kosmtik:jessie -f docker-kosmtik/Dockerfile.jessie docker-kosmtik
 ```
 
-Or build with the url : 
+Or build with the url :
 
 ```sh
 docker build -t joxit/kosmtik github.com/Joxit/docker-kosmtik
+docker build -t joxit/kosmtik -f Dockerfile.jessie github.com/Joxit/docker-kosmtik
 ```
 
-Or pull the image from [docker hub](https://hub.docker.com/r/joxit/kosmtik/) : 
+Or pull the image from [docker hub](https://hub.docker.com/r/joxit/kosmtik/) :
 
 ```sh
 docker pull joxit/kosmtik
+docker pull joxit/kosmtik:jessie
 ```
 
 ### Run
@@ -136,7 +142,7 @@ overlay:
 
 #### Overpass layer
 
-Just add "type": "overpass" and a request key with your overpass query in your Carto layer. The plugin will run the queries, cache them on disk, and transform the layers in normal geojson layers (see [kosmtik-overpass-layer pugin](https://github.com/kosmtik/kosmtik-overpass-layer)). 
+Just add "type": "overpass" and a request key with your overpass query in your Carto layer. The plugin will run the queries, cache them on disk, and transform the layers in normal geojson layers (see [kosmtik-overpass-layer pugin](https://github.com/kosmtik/kosmtik-overpass-layer)).
 
 #### Map compare
 
@@ -167,7 +173,7 @@ kosmtik comes with an internal plugin to manage that. You have two
 options: with a json file named `localconfig.json`, or with a js module
 name `localconfig.js`.
 
-Place your localconfig.js or localconfig.json file in the same directory as your 
+Place your localconfig.js or localconfig.json file in the same directory as your
 carto project (or `.yml`, `.yaml`).
 
 In both cases, the behaviour is the same, you create some rules to target
