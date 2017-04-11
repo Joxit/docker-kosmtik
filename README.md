@@ -4,10 +4,10 @@ Light docker for ksomtik <https://github.com/kosmtik/kosmtik>
 This docker is an alternative to the other kosmtik docker which is 2 times bigger.
 This image contains almost all kosmtik plugins.
 
-| Image name      | Image Size                                                                                                                                       | Image layers                                                                                                                                   |
-| :-------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| joxit/kosmtik   | [![Image Size](https://img.shields.io/imagelayers/image-size/joxit/kosmtik/latest.svg)](https://imagelayers.io/?images=joxit/kosmtik:latest)     | [![Image Layers](https://img.shields.io/imagelayers/layers/joxit/kosmtik/latest.svg)](https://imagelayers.io/?images=joxit/kosmtik:latest)     |
-| kosmtik/kosmtik | [![Image Size](https://img.shields.io/imagelayers/image-size/kosmtik/kosmtik/latest.svg)](https://imagelayers.io/?images=kosmtik/kosmtik:latest) | [![Image Layers](https://img.shields.io/imagelayers/layers/kosmtik/kosmtik/latest.svg)](https://imagelayers.io/?images=kosmtik/kosmtik:latest) |
+| Image name      | Image Size                                                                                                                                                                     |
+| :-------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| joxit/kosmtik   | [![Image Size](https://images.microbadger.com/badges/image/joxit/kosmtik.svg)](https://microbadger.com/images/joxit/kosmtik "Get your own image badge on microbadger.com")     |
+| kosmtik/kosmtik | [![Image Size](https://images.microbadger.com/badges/image/kosmtik/kosmtik.svg)](https://microbadger.com/images/kosmtik/kosmtik "Get your own image badge on microbadger.com") |
 
 ## Kosmtik
 
