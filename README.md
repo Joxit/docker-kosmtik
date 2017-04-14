@@ -4,10 +4,11 @@ Light docker for ksomtik <https://github.com/kosmtik/kosmtik>
 This docker is an alternative to the other kosmtik docker which is 2 times bigger.
 This image contains almost all kosmtik plugins.
 
-| Image name      | Image Size                                                                                                                                                                     |
-| :-------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| joxit/kosmtik   | [![Image Size](https://images.microbadger.com/badges/image/joxit/kosmtik.svg)](https://microbadger.com/images/joxit/kosmtik "Get your own image badge on microbadger.com")     |
-| kosmtik/kosmtik | [![Image Size](https://images.microbadger.com/badges/image/kosmtik/kosmtik.svg)](https://microbadger.com/images/kosmtik/kosmtik "Get your own image badge on microbadger.com") |
+| Image name           | Image Size                                                                                                                                                                               |
+| :------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| joxit/kosmtik        | [![Image Size](https://images.microbadger.com/badges/image/joxit/kosmtik.svg)](https://microbadger.com/images/joxit/kosmtik "Get your own image badge on microbadger.com")               |
+| kosmtik/kosmtik      | [![Image Size](https://images.microbadger.com/badges/image/kosmtik/kosmtik.svg)](https://microbadger.com/images/kosmtik/kosmtik "Get your own image badge on microbadger.com")           |
+| nathancahill/kosmtik | [![Image Size](https://images.microbadger.com/badges/image/nathancahill/kosmtik.svg)](https://microbadger.com/images/nathancahill/kosmtik "Get your own image badge on microbadger.com") |
 
 ## Kosmtik
 
