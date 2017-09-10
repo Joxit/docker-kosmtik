@@ -41,7 +41,7 @@ RUN apt-get update \
     && node index.js plugins --install kosmtik-open-in-josm \
     && npm uninstall npm \
     && npm cache clean \
-    && apt-get autoremove -y --purge curl ca-certificates gpg \
+    && apt-get autoremove -y --purge curl gpg \
     && rm -rf /var/lib/apt/lists/*
 
 COPY kosmtik /bin/kosmtik
