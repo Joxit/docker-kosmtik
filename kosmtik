@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 export ICU_DATA="$(find /opt/kosmtik/ -iname 'icu*.dat')"
 node /opt/kosmtik/index.js $@
 
