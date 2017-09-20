@@ -19,9 +19,21 @@ if [ "$1" = "serve" ]; then
   PORT="-p 6789:6789"
 fi
 
-KOSMTIK_ENV="$(dirname $0)/env-kosmtik"
-if [ -f "$KOSMTIK_ENV" ]; then
-  source $KOSMTIK_ENV
+KOSMTIK_GLOBAL_ENV="$(dirname $0)/env-kosmtik"
+if [ -f "$KOSMTIK_GLOBAL_ENV" ]; then
+  source $KOSMTIK_GLOBAL_ENV
+fi
+KOSMTIK_GLOBAL_CACHED_ENV="$(dirname $0)/.env-kosmtik"
+if [ -f "$KOSMTIK_GLOBAL_CACHED_ENV" ]; then
+  source $KOSMTIK_GLOBAL_CACHED_ENV
+fi
+KOSMTIK_LOCAL_ENV="env-kosmtik"
+if [ -f "$KOSMTIK_LOCAL_ENV" ]; then
+  source $KOSMTIK_LOCAL_ENV
+fi
+KOSMTIK_LOCAL_CACHED_ENV=".env-kosmtik"
+if [ -f "$KOSMTIK_LOCAL_CACHED_ENV" ]; then
+  source $KOSMTIK_LOCAL_CACHED_ENV
 fi
 
 shift

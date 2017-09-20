@@ -72,6 +72,8 @@ If you want your database to be in a docker, I suggest you to use [openfirmware/
 
 In order to fill this database, you can use [openfirmware/osm2pgsql](https://hub.docker.com/r/openfirmware/osm2pgsql/). You can download a continent or country on [geofabrik.de](http://download.geofabrik.de/) or the whole planet on [planet.osm.org](http://planet.osm.org/).
 
+**Warning**: in the case of a connection to a database on the host computer, you should not use 127.0.0.1 in your style/localconfig but your private IP. In a docker 127.0.0.1 corresponds to the container itself and not to your computer (unless you used --net host).
+
 #### Project
 
 To run a Carto project (or `.yml`, `.yaml`):
@@ -98,6 +100,14 @@ alias kosmtik="docker run -ti --rm -p 6789:6789 -v $(pwd):/opt/project -e USER_I
 ```
 
 Or use the shell in tools (add the folder in your PATH var). If you are using serve command, the shell will add --host 0.0.0.0 as arg.
+
+#### Fonts
+
+This image has been designed to be as light as possible. Therefore, it contains no fonts. If you want to add custom fonts to your project, you can use `Map { font-directory: url(./fonts); }`. Otherwise, you can link all fonts from your host computer to the container using the `-v /usr/share/fonts:/usr/share/fonts:ro` option.
+
+```sh
+docker run -ti --rm -p 6789:6789 -v $(pwd):/opt/project -v /usr/share/fonts:/usr/share/fonts:ro -e USER_ID=1000 $KOSMTIK_OPTS joxit/kosmtik kosmtik serve --host 0.0.0.0
+```
 
 ### Plugins
 
