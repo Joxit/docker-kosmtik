@@ -22,9 +22,9 @@ WORKDIR /opt/kosmtik
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl ca-certificates gpg \
-    && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
     && apt-get install -y nodejs \
-    && curl -sL https://github.com/kosmtik/kosmtik/archive/master.tar.gz | tar xz --strip-components=1 \
+    && curl -sL https://github.com/kosmtik/kosmtik/archive/0.0.17.tar.gz | tar xz --strip-components=1 \
     && npm install --production \
     && node index.js plugins --install kosmtik-tiles-export \
     && node index.js plugins --install kosmtik-fetch-remote \
@@ -40,9 +40,8 @@ RUN apt-get update \
     && node index.js plugins --install kosmtik-geojson-overlay \
     && node index.js plugins --install kosmtik-open-in-josm \
     && npm uninstall npm \
-    && npm cache clean \
     && apt-get autoremove -y --purge curl gpg \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* ~/.npm/
 
 COPY kosmtik /bin/kosmtik
 
