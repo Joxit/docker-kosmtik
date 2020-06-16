@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 LABEL maintainer="Jones Magloire @Joxit"
 
@@ -21,11 +21,12 @@ ENV NODE_PATH /usr/lib/node_modules/
 WORKDIR /opt/kosmtik
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends curl ca-certificates gpg \
-    && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
+    && apt-get install -y --no-install-recommends curl ca-certificates gpg gpg-agent \
+    && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt-get install -y nodejs \
-    && curl -sL https://github.com/kosmtik/kosmtik/archive/0.0.17.tar.gz | tar xz --strip-components=1 \
+    && curl -sL https://github.com/kosmtik/kosmtik/archive/master.tar.gz | tar xz --strip-components=1 \
     && npm install --production \
+    && npm uninstall npm \
     && node index.js plugins --install kosmtik-tiles-export \
     && node index.js plugins --install kosmtik-fetch-remote \
     && node index.js plugins --install kosmtik-overlay \
@@ -39,8 +40,7 @@ RUN apt-get update \
     && node index.js plugins --install kosmtik-place-search \
     && node index.js plugins --install kosmtik-geojson-overlay \
     && node index.js plugins --install kosmtik-open-in-josm \
-    && npm uninstall npm \
-    && apt-get autoremove -y --purge curl gpg \
+    && apt-get autoremove -y --purge curl gpg gpg-agent \
     && rm -rf /var/lib/apt/lists/* ~/.npm/
 
 COPY kosmtik /bin/kosmtik
